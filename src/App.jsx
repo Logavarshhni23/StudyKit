@@ -12,7 +12,7 @@ import Admin from "./components/Admin";
 import Cart from "./components/Cart";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { BASE_URL } from "./api";
 
 
 const App = () => {
@@ -28,7 +28,7 @@ const App = () => {
 
     try {
       const body = { productId: product._id || product.id, quantity: 1 };
-      const res = await axios.post("http://localhost:3000/cart", body, {
+      const res = await axios.post(`${BASE_URL}/cart`, body, {
         headers: { Authorization: token },
       });
       // backend returns the updated cart items array; update local state for UX
@@ -41,7 +41,7 @@ const App = () => {
 const [products,setProducts] = useState([])
     useEffect(()=>{
         const fetchData = async() => {
-            const response = await fetch(`http://localhost:3000/products`)
+            const response = await fetch(`${BASE_URL}/products`)
             const json = await response.json()
             setProducts(json)
         }
@@ -50,7 +50,7 @@ const [products,setProducts] = useState([])
  
 
 const addProducts = async (pname, url, sprice, oprice, category) => {
-  const res = await axios.post('http://localhost:3000/products',{
+  const res = await axios.post(`${BASE_URL}/products`,{
       name: pname,
       image: url,
       sellingprice: Number(sprice),
@@ -62,7 +62,7 @@ const addProducts = async (pname, url, sprice, oprice, category) => {
 };
 
 const deleteProduct = async (id)=>{
-  await fetch(`http://localhost:3000/products/${id}`, {
+  await fetch(`${BASE_URL}/products/${id}`, {
     method: "DELETE",
   });
   setProducts((prev) => prev.filter((p) => p.id !== id));

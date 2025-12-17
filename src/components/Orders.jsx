@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import dustbin from "../assets/dustbin.png";
+import { BASE_URL } from "../api";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -7,12 +8,11 @@ const Orders = () => {
   const handleDeleteOrder = async (orderId) => {
     try {
       const token = sessionStorage.getItem("token");
-      const res = await fetch(`http://localhost:3000/orders/${orderId}`, {
+      const res = await fetch(`${BASE_URL}/orders/${orderId}`, {
         method: "DELETE",
         headers: token ? { Authorization: token } : {},
       });
       if (!res.ok) throw new Error("Failed to delete order");
-      // Remove the deleted order from the state
       setOrders((prev) => prev.filter((order) => order.id !== orderId));
     } catch (err) {
       console.error(err);
@@ -24,7 +24,7 @@ const Orders = () => {
     const fetchOrders = async () => {
       try {
         const token = sessionStorage.getItem("token");
-        const res = await fetch("http://localhost:3000/orders", {
+        const res = await fetch(`${BASE_URL}/orders`, {
           headers: token ? { Authorization: token } : {},
         });
         if (res.status === 401) {

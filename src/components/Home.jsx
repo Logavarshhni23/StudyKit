@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import ProductList from "../components/ProductList";
 import banner from "../assets/banner.png";
 
 const Home = () => {

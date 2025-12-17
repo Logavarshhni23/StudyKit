@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import CartItems from "./CartItems";
+import { BASE_URL } from "../api";
 const Cart = () => {
     const [cart,setCart] = useState([])
     const fetchData = async() => {
         try {
             const token = sessionStorage.getItem("token");
-            const response = await fetch(`http://localhost:3000/cart`, {
+            const response = await fetch(`${BASE_URL}/cart`, {
                 headers: { Authorization: token }
             })
             if (!response.ok) {
@@ -46,7 +47,7 @@ const Cart = () => {
 
         try {
             const token = sessionStorage.getItem("token");
-            const res = await fetch("http://localhost:3000/orders", {
+            const res = await fetch(`${BASE_URL}/orders`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
