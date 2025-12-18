@@ -34,7 +34,7 @@ const CartItem = ({ index, item, cart, setCart }) => {
                     </div>
                 </div>
 
-                <div className="mt-4 flex items-center justify-between">
+                <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
                     <div className="flex items-center gap-2">
                         <button onClick={decreaseQuantity} className="px-3 py-1 bg-gray-100 rounded-md text-gray-700 hover:bg-gray-200">-</button>
                         <div className="px-3 py-1 border rounded-md">{item.quantity}</div>
