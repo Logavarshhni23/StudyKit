@@ -1,6 +1,6 @@
 const Footer = () => {
     return(
-        <div className="bg-rose-900 text-white flex justify-around p-10 mx-auto w-full">
+        <div className="bg-rose-900 text-white flex flex-col md:flex-row justify-around p-10 mx-auto w-full">
             <div>
                 <h2 className="text-5xl font-bold text-white mb-3">StudyKit</h2>
                 <p className="text-gray-900 w-[250px]">Your one-stop shop for latest gadgets, electronics, and accessories.</p>
